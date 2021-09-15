@@ -10,7 +10,7 @@ namespace MarketApp.Interfaces
     {
         #region Products
         void AddProducts(string itemName, double price, Category category, int countItem, int id);
-        void EditProducts(string name, int count, double amount, Category category, string id);
+        void EditProducts(string name, string newName, int count, double amount, Category category, string id);
         void GetProductForGivenCategory(Category category, string id, string name, int count, double price);
         void GetProductForGivenPrice(double lowPrice, double highPrice, string id, string name, Category category, int count, double price);
         void GetProductForGivenName(string id, string name, Category category, int count, double price);

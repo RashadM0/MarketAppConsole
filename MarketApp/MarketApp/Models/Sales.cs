@@ -6,10 +6,10 @@ namespace MarketApp.Models
 {
     class Sales
     {
-        int No;
-        double Amount;
-        SalesItem SalesItem;
-        DateTime Date;
+        public int No;
+        public double Amount;
+        public SalesItem SalesItem;
+        public DateTime Date;
 
         public Sales(int no, double amount, SalesItem salesItem, DateTime date)
         {

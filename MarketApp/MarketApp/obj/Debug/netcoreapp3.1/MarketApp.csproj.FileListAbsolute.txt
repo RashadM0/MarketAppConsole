@@ -24,3 +24,16 @@ C:\Users\Mjollnnirr\Desktop\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketAp
 C:\Users\Mjollnnirr\Desktop\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.dll
 C:\Users\Mjollnnirr\Desktop\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.pdb
 C:\Users\Mjollnnirr\Desktop\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.genruntimeconfig.cache
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\bin\Debug\netcoreapp3.1\MarketApp.exe
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\bin\Debug\netcoreapp3.1\MarketApp.deps.json
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\bin\Debug\netcoreapp3.1\MarketApp.runtimeconfig.json
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\bin\Debug\netcoreapp3.1\MarketApp.runtimeconfig.dev.json
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\bin\Debug\netcoreapp3.1\MarketApp.dll
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\bin\Debug\netcoreapp3.1\MarketApp.pdb
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.csproj.AssemblyReference.cache
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.AssemblyInfoInputs.cache
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.AssemblyInfo.cs
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.csproj.CoreCompileInputs.cache
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.dll
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.pdb
+C:\Users\rashadkhm\Desktop\MarketAppConsole\MarketApp\MarketApp\obj\Debug\netcoreapp3.1\MarketApp.genruntimeconfig.cache

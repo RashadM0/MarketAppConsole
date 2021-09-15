@@ -59,7 +59,6 @@ namespace MarketApp
                         Console.WriteLine(DateTime.Now);
                         Console.ReadLine();
                         break;
-                        goto TryAgain;
                     default:
                         break;
                 }
@@ -105,7 +104,12 @@ namespace MarketApp
                 switch (choise)
                 {
                     case "1":
-                        AddProducts(ref marketable);
+                        AddProducts(marketable);
+                        Console.WriteLine("Press Any For Continue");
+                        Console.ReadLine();
+                        break;
+                    case "2":
+                        EditProduct(marketable);
                         break;
                     default:
                         break;
@@ -138,7 +142,82 @@ namespace MarketApp
             string choise = Console.ReadLine().Trim();
         }
         #endregion
-        static void AddProducts(ref Marketable marketable)
+        static void AddProducts(Marketable marketable)
+        {
+            Console.Clear();
+            //Console.WriteLine("=================" +
+            //    "\n1: Food" +
+            //    "\n=================" +
+            //    "\n2: Drinkable" +
+            //    "\n=================" +
+            //    "\n3: Cigarettes" +
+            //    "\n================" +
+            //    "\n4: Others" +
+            //    "\n=================");
+            //Console.Write("\n" +
+            //    "\n--------------------------------------" +
+            //    "\nYour choise: ");
+            string[] categoryType = Enum.GetNames(typeof(Category));
+            for (int i = 0; i < categoryType.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}: {categoryType[i]}");
+            }
+            string typestr;
+            int typeint;
+            Console.Write("---------------------------------\nSelect a Category: ");
+            typestr = Console.ReadLine();
+            while (!int.TryParse(typestr, out typeint) || typeint < 1 || typeint > categoryType.Length)
+            {
+                Console.Write("Please Try Again: ");
+                typestr = Console.ReadLine();
+            }
+            Category category = (Category)typeint;
+            //    bool isDigit = false;
+            //choiseAgain:
+            //    string choise = Console.ReadLine().Trim();
+            //    foreach (var item in choise)
+            //    {
+            //        if (char.IsDigit(item) == true)
+            //        {
+            //            isDigit = true;
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("Please Enter Proper Value");
+            //            goto choiseAgain;
+            //        }
+            //        switch (choise)
+            //        {
+            //            case "1":
+            //                AddItem();
+            //                Console.Write("Press Any Key For Continue");
+            //                Console.ReadLine();
+            //                Console.Clear();
+            //                break;
+            //            case "2":
+            //                AddItem();
+            //                Console.Write("Press Any Key For Continue");
+            //                Console.ReadLine();
+            //                Console.Clear();
+            //                break;
+            //            case "3":
+            //                AddItem();
+            //                Console.Write("Press Any Key For Continue");
+            //                Console.ReadLine();
+            //                Console.Clear();
+            //                break;
+            //            case "4":
+            //                AddItem();
+            //                Console.Write("Press Any Key For Continue");
+            //                Console.ReadLine();
+            //                Console.Clear();
+            //                break;
+            //            default:
+            //                break;
+            //        }
+            //    }
+        }
+        static void EditProduct(Marketable marketable)
         {
             Console.Clear();
             Console.WriteLine("---------------------------------\nSelect a Category\n");
@@ -154,37 +233,34 @@ namespace MarketApp
             Console.Write("\n" +
                 "\n--------------------------------------" +
                 "\nYour choise: ");
-            //string[] category = Enum.GetNames(typeof(Category));
-            //for (int i = 0; i < category.Length; i++)
-            //{
-            //    Console.WriteLine($"{i+1}: {category[i]}");
-            //}
-            bool isDigit = false;
-        choiseAgain:
             string choise = Console.ReadLine().Trim();
-            foreach (var item in choise)
+            switch (choise)
             {
-                if (char.IsDigit(item) == true)
-                {
-                    isDigit = true;
-                }
-                else
-                {
-                    Console.WriteLine("Please Enter Proper Value");
-                    goto choiseAgain;
-                }
-                switch (choise)
-                {
-                    case "1":
-                        AddItem();
-                        Console.Write("Press Any Key For Continue");
-                        Console.ReadLine();
-                        Console.Clear();
-                        break;
-                    default:
-                        break;
-                }
+                case "1":
+                    
+                    break;
+                default:
+                    break;
             }
+            Console.Write("Enter Item ID");
+            int id;
+            ChoiseAgain:
+            bool isNumber = int.TryParse(Console.ReadLine(), out id);
+            if (!isNumber)
+            {
+                Console.Write(
+                    "\n" +
+                    "Invalid ID. Please Try Again: ");
+                goto ChoiseAgain;
+            }
+            if (id <= 0)
+            {
+                Console.Write(
+                    "\n" +
+                    "Invalid ID. Please Try Again: ");
+                goto ChoiseAgain;
+            }
+
         }
         static void AddItem()
         {

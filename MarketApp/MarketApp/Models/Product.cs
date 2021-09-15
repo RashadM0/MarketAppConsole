@@ -7,11 +7,11 @@ namespace MarketApp.Models
 {
     class Product
     {
-        string ItemName;
-        double Price;
-        Category Category;
-        int CountItem;
-        int ID;
+        public string ItemName;
+        public double Price;
+        public Category Category;
+        public int CountItem;
+        public int ID;
         public static List<Product> products;
 
         public Product(string itemName, double price, Category category, int countItem, int id)

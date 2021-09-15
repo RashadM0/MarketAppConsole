@@ -17,7 +17,9 @@ namespace MarketApp.Services
             List<Product> foods = new List<Product>();
             foods.Add(product);
             Console.WriteLine("--------Item Added--------");
-
+            List<Category> drinkable = new List<Category>();
+            drinkable.Add(category);
+            
         //    Console.Clear();
         //    Console.Write("Please Enter Product Name");
         //    string productName = Convert.ToString(Console.ReadLine().Trim());
@@ -41,7 +43,7 @@ namespace MarketApp.Services
 
 
         }
-        public void EditProducts(string name, int count, double amount, Category category, string id)
+        public void EditProducts(string name, string newName, int count, double amount, Category category, string id)
         {
             throw new NotImplementedException();
         }
