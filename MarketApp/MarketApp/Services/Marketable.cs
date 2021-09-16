@@ -9,43 +9,111 @@ namespace MarketApp.Services
 {
     class Marketable : IMarketable
     {
+        public List<Product> products = new List<Product>();
+        //public List<Product> drinkable = new List<Product>();
+        //public List<Product> cigarettes = new List<Product>();
+        //public List<Product> others = new List<Product>();
         #region Products
-        public void  AddProducts(string itemName, double price, Category category, int countItem, int id)
+        public void AddProducts(Product product/*string itemName, double price, Category category, int countItem*/)
         {
-            Product product = new Product(itemName, price, category, countItem, id);
-            //AddProducts(itemName, price, category, countItem, id
-            List<Product> foods = new List<Product>();
-            foods.Add(product);
-            Console.WriteLine("--------Item Added--------");
-            List<Category> drinkable = new List<Category>();
-            drinkable.Add(category);
-            
-        //    Console.Clear();
-        //    Console.Write("Please Enter Product Name");
-        //    string productName = Convert.ToString(Console.ReadLine().Trim());
-        //    double itemPrice;
-        //ChoiseAgain:
-        //    bool isNumber = double.TryParse(Console.ReadLine(), out itemPrice);
-        //    if (!isNumber && itemPrice <= 0)
-        //    {
-        //        Console.Write(
-        //            "\n" +
-        //            "Please Enter the Price Correctly: ");
-        //        goto ChoiseAgain;
-        //    }
-        //    //if (itemPrice <= 0)
-        //    //{
-        //    //    Console.Write(
-        //    //        "\n" +
-        //    //        "Please Enter the Price Correctly: ");
-        //    //    goto ChoiseAgain;
-        //    //}
-
-
+            //Product product = new Product(itemName, price, category, countItem);
+            products.Add(product);
         }
-        public void EditProducts(string name, string newName, int count, double amount, Category category, string id)
+        public void EditProducts(string name, string newName, int count, double amount, Category category, int id)
         {
-            throw new NotImplementedException();
+            //if (category == Category.Food)
+            //{
+            //    foreach (var item in foods)
+            //    {
+            //        if (item.ID == id)
+            //        {
+            //            Console.WriteLine("Food Detected: ");
+            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ItemName}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.Price}$" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.CountItem}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ID}\n\n");
+            //        }
+            //    }
+            //}
+            //if (category == Category.Drinkable)
+            //{
+            //    foreach (var item in drinkable)
+            //    {
+            //        if (item.ID == id)
+            //        {
+            //            Console.WriteLine("Drinks Detected: ");
+            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ItemName}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.Price}$" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.CountItem}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ID}\n\n");
+            //        }
+            //    }
+            //}
+            //if (category == Category.Cigarettes)
+            //{
+            //    foreach (var item in cigarettes)
+            //    {
+            //        if (item.ID == id)
+            //        {
+            //            Console.WriteLine("Smokes Detected: ");
+            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ItemName}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.Price}$" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.CountItem}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ID}\n\n");
+            //        }
+            //    }
+            //}
+            //if (category == Category.Others)
+            //{
+            //    foreach (var item in others)
+            //    {
+            //        if (item.ID == id)
+            //        {
+            //            Console.WriteLine("Products Detected: ");
+            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ItemName}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.Price}$" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.CountItem}" +
+            //            "\n++++++++++++++++++++++++++++++++++++++" +
+            //            $"\n{item.ID}\n\n");
+            //        }
+            //    }
+            //}
+        }
+        public List<Product> ShowProducts()
+        {
+            Console.Clear();
+            foreach (var item in products)
+            {
+                if (item != null)
+                {
+                    Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                        $"\nProduct Id: {item.ID}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nProduct Name: {item.ItemName}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nCategory: {item.Category}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nProduct Left: {item.CountItem}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nPrice: {item.Price}\n\n");
+                }
+            }
+            return products;
         }
         public void GetProductForGivenCategory(Category category, string id, string name, int count, double price)
         {
@@ -56,10 +124,6 @@ namespace MarketApp.Services
             throw new NotImplementedException();
         }
         public void GetProductForGivenPrice(double lowPrice, double highPrice, string id, string name, Category category, int count, double price)
-        {
-            throw new NotImplementedException();
-        }
-        public void Products(string itemName, double price, Category category, int countItem, string id)
         {
             throw new NotImplementedException();
         }

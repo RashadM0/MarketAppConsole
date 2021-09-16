@@ -10,8 +10,7 @@ namespace MarketApp
     {
         static void Main(string[] args)
         {
-            Marketable marketable = new Marketable();
-            TryAgain:
+        TryAgain:
             #region Welcoming
             Console.WriteLine(@"
                 ██     ██ ███████ ██       ██████  ██████  ███    ███ ███████ 
@@ -35,7 +34,7 @@ namespace MarketApp
                 "\nYour choise: ");
             #endregion
             bool isDigit = false;
-            ChoiseAgain:
+        ChoiseAgain:
             string choise = Console.ReadLine().Trim();
             foreach (var item in choise)
             {
@@ -67,6 +66,7 @@ namespace MarketApp
         #region MainMethods
         public static void OperationsOnProduct()
         {
+            MainChoise:
             Marketable marketable = new Marketable();
             Console.Clear();
             Console.WriteLine("=================================================" +
@@ -90,7 +90,7 @@ namespace MarketApp
                 "\n--------------------------------------" +
                 "\nYour choise: ");
             bool isDigit = false;
-            choiseAgain:
+        choiseAgain:
             string choise = Console.ReadLine().Trim();
             foreach (var item in choise)
             {
@@ -105,11 +105,18 @@ namespace MarketApp
                 {
                     case "1":
                         AddProducts(marketable);
-                        Console.WriteLine("Press Any For Continue");
+                        Console.WriteLine("Press Any Key for Continue");
                         Console.ReadLine();
-                        break;
+                        goto MainChoise;
                     case "2":
                         EditProduct(marketable);
+                        break;
+                    case "3":
+                        //delete
+                        break;
+                    case "4":
+                        ShowProducts(marketable);
+                        Console.ReadLine();
                         break;
                     default:
                         break;
@@ -145,6 +152,109 @@ namespace MarketApp
         static void AddProducts(Marketable marketable)
         {
             Console.Clear();
+            string[] categoryType = Enum.GetNames(typeof(Category));
+            for (int i = 0; i < categoryType.Length; i++)
+            {
+                Console.WriteLine($"=================\n{i + 1}: {categoryType[i]}");
+            }
+            string typestr;
+            int typeint;
+            Console.Write("---------------------------------\nSelect a Category: ");
+            typestr = Console.ReadLine();
+            while (!int.TryParse(typestr, out typeint) || typeint < 1 || typeint > categoryType.Length)
+            {
+                Console.Write("Please Try Again: ");
+                typestr = Console.ReadLine();
+            }
+            Category category = (Category)typeint;
+            AddItem(marketable);
+            //switch (category)
+            //{
+            //    case Category.Food:
+            //        AddItem(marketable);
+            //        //Product.AddItem();
+            //        Console.WriteLine("Press Any Key For Continue");
+            //        Console.ReadLine();
+            //        Console.Clear();
+            //        break;
+            //    case Category.Drinkable:
+            //        AddItem(marketable);
+            //        // Product.AddItem();
+            //        Console.WriteLine("Press Any Key For Continue");
+            //        Console.ReadLine();
+            //        Console.Clear();
+            //        break;
+            //    case Category.Cigarettes:
+            //        AddItem(marketable);
+            //        //Product.AddItem();
+            //        Console.WriteLine("Press Any Key For Continue");
+            //        Console.ReadLine();
+            //        Console.Clear();
+            //        break;
+            //    case Category.Others:
+            //        AddItem(marketable);
+            //        //Product.AddItem();
+            //        Console.WriteLine("Press Any Key For Continue");
+            //        Console.ReadLine();
+            //        Console.Clear();
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+        static void EditProduct(Marketable marketable)
+        {
+            Console.Clear();
+            string[] categoryType = Enum.GetNames(typeof(Category));
+            for (int i = 0; i < categoryType.Length; i++)
+            {
+                Console.WriteLine($"=================\n{i + 1}: {categoryType[i]}");
+            }
+            string typestr;
+            int typeint;
+            Console.Write("---------------------------------\nSelect a Category: ");
+            typestr = Console.ReadLine();
+            while (!int.TryParse(typestr, out typeint) || typeint < 1 || typeint > categoryType.Length)
+            {
+                Console.Write("Please Try Again: ");
+                typestr = Console.ReadLine();
+            }
+            Category category = (Category)typeint;
+            switch (category)
+            {
+                case Category.Food:
+                    if (typestr == Category.Food.ToString())
+                    {
+                        EditItem(category);
+                    }
+                    //EditItem(category);
+                    Console.WriteLine("Press Any Key For Continue");
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
+                case Category.Drinkable:
+                    EditItem(category);
+                    Console.WriteLine("Press Any Key For Continue");
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
+                case Category.Cigarettes:
+                    EditItem(category);
+                    Console.WriteLine("Press Any Key For Continue");
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
+                case Category.Others:
+                    EditItem(category);
+                    Console.WriteLine("Press Any Key For Continue");
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
+                default:
+                    break;
+            }
+            //Console.Clear();
+            //Console.WriteLine("---------------------------------\nSelect a Category\n");
             //Console.WriteLine("=================" +
             //    "\n1: Food" +
             //    "\n=================" +
@@ -157,113 +267,39 @@ namespace MarketApp
             //Console.Write("\n" +
             //    "\n--------------------------------------" +
             //    "\nYour choise: ");
-            string[] categoryType = Enum.GetNames(typeof(Category));
-            for (int i = 0; i < categoryType.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}: {categoryType[i]}");
-            }
-            string typestr;
-            int typeint;
-            Console.Write("---------------------------------\nSelect a Category: ");
-            typestr = Console.ReadLine();
-            while (!int.TryParse(typestr, out typeint) || typeint < 1 || typeint > categoryType.Length)
-            {
-                Console.Write("Please Try Again: ");
-                typestr = Console.ReadLine();
-            }
-            Category category = (Category)typeint;
-            //    bool isDigit = false;
-            //choiseAgain:
-            //    string choise = Console.ReadLine().Trim();
-            //    foreach (var item in choise)
-            //    {
-            //        if (char.IsDigit(item) == true)
-            //        {
-            //            isDigit = true;
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("Please Enter Proper Value");
-            //            goto choiseAgain;
-            //        }
-            //        switch (choise)
-            //        {
-            //            case "1":
-            //                AddItem();
-            //                Console.Write("Press Any Key For Continue");
-            //                Console.ReadLine();
-            //                Console.Clear();
-            //                break;
-            //            case "2":
-            //                AddItem();
-            //                Console.Write("Press Any Key For Continue");
-            //                Console.ReadLine();
-            //                Console.Clear();
-            //                break;
-            //            case "3":
-            //                AddItem();
-            //                Console.Write("Press Any Key For Continue");
-            //                Console.ReadLine();
-            //                Console.Clear();
-            //                break;
-            //            case "4":
-            //                AddItem();
-            //                Console.Write("Press Any Key For Continue");
-            //                Console.ReadLine();
-            //                Console.Clear();
-            //                break;
-            //            default:
-            //                break;
-            //        }
-            //    }
-        }
-        static void EditProduct(Marketable marketable)
-        {
-            Console.Clear();
-            Console.WriteLine("---------------------------------\nSelect a Category\n");
-            Console.WriteLine("=================" +
-                "\n1: Food" +
-                "\n=================" +
-                "\n2: Drinkable" +
-                "\n=================" +
-                "\n3: Cigarettes" +
-                "\n================" +
-                "\n4: Others" +
-                "\n=================");
-            Console.Write("\n" +
-                "\n--------------------------------------" +
-                "\nYour choise: ");
-            string choise = Console.ReadLine().Trim();
-            switch (choise)
-            {
-                case "1":
-                    
-                    break;
-                default:
-                    break;
-            }
-            Console.Write("Enter Item ID");
-            int id;
-            ChoiseAgain:
-            bool isNumber = int.TryParse(Console.ReadLine(), out id);
-            if (!isNumber)
-            {
-                Console.Write(
-                    "\n" +
-                    "Invalid ID. Please Try Again: ");
-                goto ChoiseAgain;
-            }
-            if (id <= 0)
-            {
-                Console.Write(
-                    "\n" +
-                    "Invalid ID. Please Try Again: ");
-                goto ChoiseAgain;
-            }
+            //string choise = Console.ReadLine().Trim();
+            //switch (choise)
+            //{
+            //    case "1":
 
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+
+            //Console.Write("Enter Item ID");
+            //int id;
+            //ChoiseAgain:
+            //bool isNumber = int.TryParse(Console.ReadLine(), out id);
+            //if (!isNumber)
+            //{
+            //    Console.Write(
+            //        "\n" +
+            //        "Invalid ID. Please Try Again: ");
+            //    goto ChoiseAgain;
+            //}
+            //if (id <= 0)
+            //{
+            //    Console.Write(
+            //        "\n" +
+            //        "Invalid ID. Please Try Again: ");
+            //    goto ChoiseAgain;
+            //}
         }
-        static void AddItem()
+        static void AddItem(/*Product product, */Marketable marketable)
         {
+            Category category = new Category();
             Console.Clear();
             Console.Write("Please Enter Product Name: ");
             string itemName = Convert.ToString(Console.ReadLine().Trim());
@@ -303,30 +339,160 @@ namespace MarketApp
                     "Wrong Choise. Try Again: ");
                 goto CountAgain;
             }
+            Product product = new Product(itemName, price, category, countItem);
+            marketable.products.Add(product);
+            //marketable.AddProducts(product);
+            //Console.Clear();
+            Console.WriteLine("\n--------Item Added--------\n");
+            Console.WriteLine(marketable.products.Count);
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+            $"\nItem Name: {itemName}" +
+            "\n++++++++++++++++++++++++++++++++++++++" +
+            $"\nPrice: {price}" +
+            "\n++++++++++++++++++++++++++++++++++++++" +
+            $"\nItem Left: {countItem}" +
+            "\n++++++++++++++++++++++++++++++++++++++" +
+            $"\nID: {product.ID}\n\n");
+        }
+        static void EditItem(Category category)
+        {
+            //Category category = new Category();
+            Marketable marketable = new Marketable();
+            Console.Write("---------------------------------\nEnter Item ID: ");
             int id;
-            Console.Write("---------------------------------\nID: ");
-        IDAgain:
-            bool isNumber2 = int.TryParse(Console.ReadLine(), out id);
-            if (!isNumber2)
+        ChoiseAgain:
+            bool isNumber = int.TryParse(Console.ReadLine(), out id);
+            if (!isNumber)
             {
                 Console.Write(
                     "\n" +
-                    "ID Must be a Number: ");
-                goto IDAgain;
+                    "Invalid ID. Please Try Again: ");
+                goto ChoiseAgain;
+            }
+            else if (id <= 0)
+            {
+                Console.Write(
+                    "\n" +
+                    "Invalid ID. Please Try Again: ");
+                goto ChoiseAgain;
             }
             else
             {
-                Console.Clear();
-                Console.WriteLine("\n--------Item Added--------\n");
+                //if (category == Category.Food)
+                //{
+                foreach (var item in marketable.products)
+                {
+                    if (item.ID == id)
+                    {
+                        Console.WriteLine("Food Detected: ");
+                        Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                        $"\n{item.ItemName}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\n{item.Price}$" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\n{item.CountItem}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\n{item.ID}\n\n");
+                    }
+                    else
+                    {
+                        Console.Write("There is no Product. Please Try Again: ");
+                        goto ChoiseAgain;
+                    }
+                    break;
+                }
+                //}
+                //    if (category == Category.Drinkable)
+                //    {
+                //        foreach (var item in marketable.drinkable)
+                //        {
+                //            if (item.ID == id)
+                //            {
+                //                Console.WriteLine("Drinks Detected: ");
+                //                Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.ItemName}" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.Price}$" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.CountItem}" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.ID}\n\n");
+                //            }
+                //            else
+                //            {
+                //                Console.Write("There is no Product. Please Try Again: ");
+                //                goto ChoiseAgain;
+                //            }
+                //            break;
+                //        }
+                //    }
+                //    if (category == Category.Cigarettes)
+                //    {
+                //        foreach (var item in marketable.cigarettes)
+                //        {
+                //            if (item.ID == id)
+                //            {
+                //                Console.WriteLine("Smokes Detected: ");
+                //                Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.ItemName}" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.Price}$" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.CountItem}" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.ID}\n\n");
+                //            }
+                //            else
+                //            {
+                //                Console.Write("There is no Product. Please Try Again: ");
+                //                goto ChoiseAgain;
+                //            }
+                //            break;
+                //        }
+                //    }
+                //    if (category == Category.Others)
+                //    {
+                //        foreach (var item in marketable.others)
+                //        {
+                //            if (item.ID == id)
+                //            {
+                //                Console.WriteLine("Products Detected: ");
+                //                Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.ItemName}" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.Price}$" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.CountItem}" +
+                //                "\n++++++++++++++++++++++++++++++++++++++" +
+                //                $"\n{item.ID}\n\n");
+                //            }
+                //            else
+                //            {
+                //                Console.Write("There is no Product. Please Try Again: ");
+                //                goto ChoiseAgain;
+                //            }
+                //            break;
+                //        }
+                //    }
+            }
+        }
+        static void ShowProducts(Marketable marketable)
+        {
+            Console.Clear();
+            foreach (var item in marketable.products)
+            {
                 Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-                $"\nItem Name: {itemName}" +
-                "\n++++++++++++++++++++++++++++++++++++++" +
-                $"\nPrice: {price}" +
-                "\n++++++++++++++++++++++++++++++++++++++" +
-                $"\nItem Left: {countItem}" +
-                "\n++++++++++++++++++++++++++++++++++++++" +
-                $"\nID: {id}\n\n");
-            }  
+                    $"\nProduct Id: {item.ID}" +
+                    "\n++++++++++++++++++++++++++++++++++++++" +
+                    $"\nProduct Name: {item.ItemName}" +
+                    "\n++++++++++++++++++++++++++++++++++++++" +
+                    $"\nCategory: {item.Category}" +
+                    "\n++++++++++++++++++++++++++++++++++++++" +
+                    $"\nProduct Left: {item.CountItem}" +
+                    "\n++++++++++++++++++++++++++++++++++++++" +
+                    $"\nPrice: {item.Price}\n\n");
+                break;
+            }
         }
     }
 }
