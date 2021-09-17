@@ -9,8 +9,8 @@ namespace MarketApp.Interfaces
     interface IMarketable
     {
         #region Products
-        void AddProducts(Product product/*string itemName, double price, Category category, int countItem*/);
-        void EditProducts(string name, string newName, int count, double amount, Category category, int id);
+        void AddProducts(Product product);
+        void EditProducts(string newName, int newCount, double price, Category category, Category newCategory, int id);
         void GetProductForGivenCategory(Category category, string id, string name, int count, double price);
         void GetProductForGivenPrice(double lowPrice, double highPrice, string id, string name, Category category, int count, double price);
         void GetProductForGivenName(string id, string name, Category category, int count, double price);

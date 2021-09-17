@@ -15,80 +15,23 @@ namespace MarketApp.Services
         {
             products.Add(product);
         }
-        public void EditProducts(string name, string newName, int count, double amount, Category category, int id)
+        public void EditProducts(string newName, int newCount, double price, Category category, Category newCategory, int id)
         {
-            //if (category == Category.Food)
-            //{
-            //    foreach (var item in foods)
-            //    {
-            //        if (item.ID == id)
-            //        {
-            //            Console.WriteLine("Food Detected: ");
-            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ItemName}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.Price}$" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.CountItem}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ID}\n\n");
-            //        }
-            //    }
-            //}
-            //if (category == Category.Drinkable)
-            //{
-            //    foreach (var item in drinkable)
-            //    {
-            //        if (item.ID == id)
-            //        {
-            //            Console.WriteLine("Drinks Detected: ");
-            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ItemName}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.Price}$" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.CountItem}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ID}\n\n");
-            //        }
-            //    }
-            //}
-            //if (category == Category.Cigarettes)
-            //{
-            //    foreach (var item in cigarettes)
-            //    {
-            //        if (item.ID == id)
-            //        {
-            //            Console.WriteLine("Smokes Detected: ");
-            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ItemName}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.Price}$" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.CountItem}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ID}\n\n");
-            //        }
-            //    }
-            //}
-            //if (category == Category.Others)
-            //{
-            //    foreach (var item in others)
-            //    {
-            //        if (item.ID == id)
-            //        {
-            //            Console.WriteLine("Products Detected: ");
-            //            Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ItemName}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.Price}$" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.CountItem}" +
-            //            "\n++++++++++++++++++++++++++++++++++++++" +
-            //            $"\n{item.ID}\n\n");
-            //        }
-            //    }
-            //}
+            string[] categoryType = Enum.GetNames(typeof(Category));
+            for (int i = 0; i < categoryType.Length; i++)
+            {
+                Console.WriteLine($"=================\n{i + 1}: {categoryType[i]}");
+            }
+            string typestr;
+            int typeint;
+            Console.Write("---------------------------------\nNew Category: ");
+            typestr = Console.ReadLine();
+            while (!int.TryParse(typestr, out typeint) || typeint < 1 || typeint > categoryType.Length)
+            {
+                Console.Write("Please Try Again: ");
+                typestr = Console.ReadLine();
+            }
+            category = (Category)typeint;
         }
         public List<Product> ShowProducts()
         {
