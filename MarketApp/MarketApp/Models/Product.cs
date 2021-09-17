@@ -9,21 +9,27 @@ namespace MarketApp.Models
 {
     class Product : Marketable
     {
-        private static int _id = 1;
+        private static int _id = 0;
         public string ItemName;
         public double Price;
         public Category Category;
         public int CountItem;
         public int ID { get; set; }
-        //public static List<Product> products;
-        
-        public Product(string itemName, double price, Category category, int countItem)
+        public static List<Product> Productss { get; protected set; }
+
+        static Product()
+        {
+            Productss = new List<Product>();
+        }
+        public Product(string itemName, double price, Category category, int countItem/*, List<Product> products*/)
         {
             ItemName = itemName;
             Price = price;
             Category = category;
             CountItem = countItem;
             ID = ++_id;
+
+            Productss.Add(this);
         }
         Marketable marketable = new Marketable();
         //public static Product AddItem()

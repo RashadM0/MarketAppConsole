@@ -10,13 +10,9 @@ namespace MarketApp.Services
     class Marketable : IMarketable
     {
         public List<Product> products = new List<Product>();
-        //public List<Product> drinkable = new List<Product>();
-        //public List<Product> cigarettes = new List<Product>();
-        //public List<Product> others = new List<Product>();
         #region Products
-        public void AddProducts(Product product/*string itemName, double price, Category category, int countItem*/)
+        public void AddProducts(Product product)
         {
-            //Product product = new Product(itemName, price, category, countItem);
             products.Add(product);
         }
         public void EditProducts(string name, string newName, int count, double amount, Category category, int id)
