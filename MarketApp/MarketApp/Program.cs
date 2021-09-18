@@ -3,14 +3,23 @@ using MarketApp.Models;
 using MarketApp.Services;
 using MarketApp.Interfaces;
 using MarketApp.Enums;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MarketApp
 {
     class Program
     {
+        #region Back
+        static void MenuMethod()
+        {
+        }
+        #endregion
         static void Main(string[] args)
         {
             Marketable marketable = new Marketable();
+            //Product product = null;
+            //marketable.ItemList(product);
         TryAgain:
             #region Welcoming
             Console.WriteLine(@"
@@ -52,7 +61,7 @@ namespace MarketApp
                         OperationsOnProduct(ref marketable);
                         goto TryAgain;
                     case "2":
-                        SalesOperations();
+                        SalesOperations(ref marketable);
                         goto TryAgain;
                     case "0":
                         Console.WriteLine("Thank you for using our application :)");
@@ -67,7 +76,6 @@ namespace MarketApp
         #region MainMethods
         public static void OperationsOnProduct(ref Marketable marketable)
         {
-
         MainChoise:
             Console.Clear();
             Console.WriteLine("=================================================" +
@@ -115,22 +123,47 @@ namespace MarketApp
                         Console.WriteLine("Press Any Key for Continue");
                         Console.ReadLine();
                         Console.Clear();
-                        break;
+                        goto MainChoise;
                     case "3":
-                        //delete
-                        break;
+                        DeleteProduct(marketable);
+                        Console.WriteLine("Press Any Key for Continue");
+                        Console.ReadLine();
+                        Console.Clear();
+                        goto MainChoise;
                     case "4":
                         ShowProducts(marketable);
                         Console.WriteLine("Press Any Key for Continue");
                         Console.ReadLine();
                         Console.Clear();
                         goto MainChoise;
+                    case "5":
+                        ShowProductsByCategories(marketable);
+                        Console.WriteLine("Press Any Key for Continue");
+                        Console.ReadLine();
+                        Console.Clear();
+                        goto MainChoise;
+                    case "6":
+                        ShowProductsByPriceRange(marketable);
+                        Console.WriteLine("Press Any Key for Continue");
+                        Console.ReadLine();
+                        Console.Clear();
+                        goto MainChoise;
+                    case "7":
+                        ShowProductsByName(marketable);
+                        Console.WriteLine("Press Any Key for Continue");
+                        Console.ReadLine();
+                        Console.Clear();
+                        goto MainChoise;
+                    case "0":
+                        MenuMethod();
+                        Console.Clear();
+                        break;
                     default:
                         break;
                 }
             }
         }
-        public static void SalesOperations()
+        public static void SalesOperations(ref Marketable marketable)
         {
             Console.Clear();
             Console.WriteLine("=====================================================" +
@@ -153,9 +186,45 @@ namespace MarketApp
             Console.Write("\n" +
                 "\n--------------------------------------" +
                 "\nYour choise: ");
+            bool isDigit = false;
+        choiseAgain:
             string choise = Console.ReadLine().Trim();
+            foreach (var item in choise)
+            {
+                if (char.IsDigit(item) == true)
+                    isDigit = true;
+                else
+                {
+                    Console.WriteLine("Please Enter Proper Value");
+                    goto choiseAgain;
+                }
+                switch (choise)
+                {
+                    case "1":
+                    //newsale
+                    case "2":
+                    //return
+                    case "3":
+                    //delete
+                    case "4":
+                    //showall
+                    case "5":
+                    //daterange
+                    case "6":
+                    //pricerange
+                    case "7":
+                    //givendate
+                    case "0":
+                        MenuMethod();
+                        Console.Clear();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         #endregion
+        #region ProductMethods
         static void AddProducts(Marketable marketable)
         {
             Console.Clear();
@@ -215,6 +284,7 @@ namespace MarketApp
             }
             Product product = new Product(itemName, price, category, countItem);
             marketable.products.Add(product);
+            int id = product.ID;
             Console.Clear();
             Console.WriteLine("\n--------Item Added--------\n");
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
@@ -224,11 +294,15 @@ namespace MarketApp
             "\n++++++++++++++++++++++++++++++++++++++" +
             $"\nItem Left: {countItem}" +
             "\n++++++++++++++++++++++++++++++++++++++" +
-            $"\nID: {product.ID}\n\n");
+            $"\nID: {id}\n\n");
         }
         static void EditProduct(Marketable marketable)
         {
             Console.Clear();
+            foreach (var item in marketable.products)
+            {
+                Console.WriteLine(item.ToString());
+            }
             int id;
             Console.Write("Please Enter Product ID: ");
         TryAgain:
@@ -249,20 +323,25 @@ namespace MarketApp
             }
             foreach (var item in marketable.products)
             {
-                if (item.ID == id)
+                if (marketable.products.Find(product => product.ID == id) == null)
                 {
-                    Console.WriteLine("\n--------Item Detected--------\n");
-                    Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-                    $"\nItem Name: {item.ItemName}" +
-                    "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nPrice: {item.Price + "$"}" +
-                    "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nCategory: {item.Category}" +
-                    "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nItem Left: {item.CountItem}" +
-                    "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nID: {item.ID}\n\n");
+                    Console.Write("ID Not Found. Try again: ");
+                    goto TryAgain;
                 }
+                Product product = marketable.products.Find(product => product.ID == id);
+                Console.Clear();
+                Console.WriteLine("\n--------Item Detected--------\n");
+                Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                $"\nItem Name: {product.ItemName}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nPrice: {product.Price + "$"}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nCategory: {product.Category}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nItem Left: {product.CountItem}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nID: {product.ID}\n\n");
+
                 Console.Write("***************************************\nEnter New Item Name: ");
                 string newName = Console.ReadLine().Trim();
                 Console.Write("---------------------------------\nNew Price: ");
@@ -316,69 +395,98 @@ namespace MarketApp
                         "Wrong Choise. Try Again: ");
                     goto CountAgain;
                 }
-                item.ItemName = newName;
-                item.Price = newPrice;
-                item.CountItem = newCount;
-                item.Category = (Category)typeint;
+                product.ItemName = newName;
+                product.Price = newPrice;
+                product.CountItem = newCount;
+                product.Category = (Category)typeint;
 
                 Console.WriteLine("\n--------Item Edited--------\n");
                 Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-                    $"\nItem Name: {item.ItemName}" +
+                    $"\nItem Name: {product.ItemName}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nPrice: {item.Price + "$"}" +
+                    $"\nPrice: {product.Price + "$"}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nCategory: {item.Category}" +
+                    $"\nCategory: {product.Category}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nItem Left: {item.CountItem}" +
+                    $"\nItem Left: {product.CountItem}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nID: {item.ID}\n\n");
+                    $"\nID: {product.ID}\n\n");
+                break;
             }
         }
-        static void EditItem(Category category)
+        static void DeleteProduct(Marketable marketable)
         {
-            //Category category = new Category();
-            Marketable marketable = new Marketable();
-            Console.Write("---------------------------------\nEnter Item ID: ");
+            Console.Clear();
+            foreach (var item in marketable.products)
+            {
+                Console.WriteLine(item.ToString());
+            }
             int id;
-        ChoiseAgain:
+            Console.Write("Please Enter Product ID: ");
+        TryAgain:
             bool isNumber = int.TryParse(Console.ReadLine(), out id);
             if (!isNumber)
             {
                 Console.Write(
                     "\n" +
-                    "Invalid ID. Please Try Again: ");
-                goto ChoiseAgain;
+                    "Wrong Choise. Try Again: ");
+                goto TryAgain;
             }
-            else if (id <= 0)
+            if (id <= 0)
             {
                 Console.Write(
                     "\n" +
-                    "Invalid ID. Please Try Again: ");
-                goto ChoiseAgain;
+                    "Wrong Choise. Try Again: ");
+                goto TryAgain;
             }
-            else
+            foreach (var item in marketable.products)
             {
-                //if (category == Category.Food)
-                //{
-                foreach (var item in marketable.products)
+                if (marketable.products.Find(product => product.ID == id) == null)
                 {
-                    if (item.ID == id)
-                    {
-                        Console.WriteLine("Food Detected: ");
-                        Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-                        $"\n{item.ItemName}" +
-                        "\n++++++++++++++++++++++++++++++++++++++" +
-                        $"\n{item.Price}$" +
-                        "\n++++++++++++++++++++++++++++++++++++++" +
-                        $"\n{item.CountItem}" +
-                        "\n++++++++++++++++++++++++++++++++++++++" +
-                        $"\n{item.ID}\n\n");
-                    }
-                    else
-                    {
-                        Console.Write("There is no Product. Please Try Again: ");
-                        goto ChoiseAgain;
-                    }
+                    Console.Write("ID Not Found. Try Again: ");
+                    goto TryAgain;
+                }
+                Product product = marketable.products.Find(product => product.ID == id);
+                Console.WriteLine("\n--------Item Detected--------\n");
+                Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                $"\nItem Name: {product.ItemName}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nPrice: {product.Price + "$"}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nCategory: {product.Category}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nItem Left: {product.CountItem}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nID: {product.ID}\n\n");
+                Console.Write("Enter Count of item That You Want to Delete: ");
+            CountAgain:
+                int countItem = Convert.ToInt32(Console.ReadLine());
+                if (countItem <= 0)
+                {
+                    Console.WriteLine("Count Must be More than '0'");
+                    goto CountAgain;
+                }
+                if (countItem > item.CountItem)
+                {
+                    Console.Write($"Only {item.CountItem} Left. Please Add Less: ");
+                    goto CountAgain;
+                }
+                else if (countItem == item.CountItem)
+                {
+                    Console.Write("Press any Key, If You Want Delete: ");
+                    Console.ReadLine();
+                    marketable.products.Remove(marketable.products.Find(product => product.ID == id));
+                    Console.WriteLine("\n--------Item Deleted--------\n");
+                    break;
+                }
+                else if (countItem < item.CountItem && countItem > 0)
+                {
+                    item.CountItem -= countItem;
+                    Console.Write("Press any Key, If You Want Delete: ");
+                    Console.ReadLine();
+                    marketable.products.Remove(marketable.products.Find(product => product.ID == id));
+                    marketable.products.Add(item);
+                    Console.Write($"{countItem} of Item is Deleted. ");
                     break;
                 }
             }
@@ -386,19 +494,128 @@ namespace MarketApp
         static void ShowProducts(Marketable marketable)
         {
             Console.Clear();
-            foreach (var item in marketable.products)
+            if (marketable.products.Count != 0)
             {
+                foreach (var item in marketable.products)
+                {
+                    Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                        $"\nProduct Id: {item.ID}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nProduct Name: {item.ItemName}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nCategory: {item.Category}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nProduct Left: {item.CountItem}" +
+                        "\n++++++++++++++++++++++++++++++++++++++" +
+                        $"\nPrice: {item.Price + "$"}\n\n");
+                }
+            }
+            else
+                Console.WriteLine("\n--------Item Not Found--------\n");
+        }
+        static void ShowProductsByCategories(Marketable marketable)
+        {
+            Console.Clear();
+            string[] categoryType = Enum.GetNames(typeof(Category));
+            for (int i = 0; i < categoryType.Length; i++)
+            {
+                Console.WriteLine($"=================\n{i + 1}: {categoryType[i]}");
+            }
+            string typestr;
+            int typeint;
+            Console.Write("---------------------------------\nSelect Category: ");
+            typestr = Console.ReadLine();
+            while (!int.TryParse(typestr, out typeint) || typeint < 1 || typeint > categoryType.Length)
+            {
+                Console.Write("Please Try Again: ");
+                typestr = Console.ReadLine();
+            }
+            Category category = (Category)typeint;
+            List<Product> product = marketable.products.FindAll(product => product.Category == (Category)typeint);
+            foreach (var item in product)
+            {
+                Console.Clear();
                 Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
-                    $"\nProduct Id: {item.ID}" +
+                    $"\nItem name: {item.ItemName}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nProduct Name: {item.ItemName}" +
+                    $"\nIrice: {item.Price + "$"}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
                     $"\nCategory: {item.Category}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nProduct Left: {item.CountItem}" +
+                    $"\nItem left: {item.CountItem}" +
                     "\n++++++++++++++++++++++++++++++++++++++" +
-                    $"\nPrice: {item.Price + "$"}\n\n");
+                    $"\nID: {item.ID}\n\n");
             }
         }
+        static void ShowProductsByPriceRange(Marketable marketable)
+        {
+            Console.Clear();
+            Console.Write("Enter Start Price: ");
+            double startPrice;
+        ChoiseAgain:
+            bool isNumber = double.TryParse(Console.ReadLine(), out startPrice);
+            if (!isNumber)
+            {
+                Console.Write(
+                    "\n" +
+                    "Please Enter the Price Correctly: ");
+                goto ChoiseAgain;
+            }
+            if (startPrice <= 0)
+            {
+                Console.Write(
+                    "\n" +
+                    "Please Enter the Price Correctly: ");
+                goto ChoiseAgain;
+            }
+            double finalPrice;
+            Console.Write("---------------------------------\nLast Price: ");
+        ChoiseAgain1:
+            bool isNumber1 = double.TryParse(Console.ReadLine(), out finalPrice);
+            if (!isNumber1)
+            {
+                Console.Write(
+                    "\n" +
+                    "Please Enter the Price Correctly: ");
+                goto ChoiseAgain1;
+            }
+            if (finalPrice <= startPrice)
+            {
+                Console.Write(
+                    "\n" +
+                    "Last Price Cannot Less Than Start Price. Try Again: ");
+                goto ChoiseAgain1;
+            }
+            List<Product> product = marketable.products.FindAll(product => product.Price >= startPrice && product.Price <= finalPrice);
+            foreach (var item in product)
+            {
+                Console.Clear();
+                foreach (var item1 in product)
+                {
+                    Console.WriteLine(item1.ToString());
+                }
+            }
+        }
+        static void ShowProductsByName(Marketable marketable)
+        {
+            Console.Clear();
+            Console.Write("Enter Product Name: ");
+            string name = Convert.ToString(Console.ReadLine().Trim().ToLower());
+            List<Product> product = marketable.products.FindAll(product => product.ItemName == name);
+            foreach (var item in product)
+            {
+                Console.Clear();
+                foreach (var item1 in product)
+                {
+                    Console.WriteLine(item1.ToString());
+                }
+            }
+        }
+        #endregion
+        static void AddSale()
+        {
+
+        }
+
     }
 }

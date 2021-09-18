@@ -11,7 +11,7 @@ namespace MarketApp.Interfaces
         #region Products
         void AddProducts(Product product);
         void EditProducts(string newName, int newCount, double price, Category category, Category newCategory, int id);
-        void GetProductForGivenCategory(Category category, string id, string name, int count, double price);
+        void GetProductForGivenCategory(Product product);
         void GetProductForGivenPrice(double lowPrice, double highPrice, string id, string name, Category category, int count, double price);
         void GetProductForGivenName(string id, string name, Category category, int count, double price);
         List<Product> ShowProducts();

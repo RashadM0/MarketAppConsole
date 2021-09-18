@@ -24,5 +24,15 @@ namespace MarketApp.Models
             ID = ++_id;
         }
         Marketable marketable = new Marketable();
+        public override string ToString()
+        {
+            return $"\n++++++++++++++++++++++++" +
+                $"\nID: {ID}" +
+                $"\nItem Name: {ItemName}" +
+                $"\nPrice: {Price}$" +
+                $"\nCategory: {Category}" +
+                $"\nItem Left: {CountItem}" +
+                $"\n++++++++++++++++++++++++\n"; ;
+        }
     }
 }

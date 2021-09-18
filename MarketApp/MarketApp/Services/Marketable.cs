@@ -11,9 +11,40 @@ namespace MarketApp.Services
     {
         public List<Product> products = new List<Product>();
         #region Products
+        public void ItemList(Product product)
+        {
+            products.Add(product = new Product("Lay's", 1.5, Category.Food, 20));
+            products.Add(product = new Product("Snickers", 0.60, Category.Food, 20));
+            products.Add(product = new Product("Toblerone", 2.60, Category.Food, 20));
+            products.Add(product = new Product("Sausage", 3.25, Category.Food, 20));
+            products.Add(product = new Product("Meat", 6.10, Category.Food, 20));
+            products.Add(product = new Product("Haribo", 1.25, Category.Food, 20));
+            products.Add(product = new Product("Coca-Cola", 1, Category.Drinkable, 20));
+            products.Add(product = new Product("Tea", 2.30, Category.Drinkable, 20));
+            products.Add(product = new Product("Jack Daniel's", 30, Category.Drinkable, 10));
+            products.Add(product = new Product("Absolute", 35, Category.Drinkable, 10));
+            products.Add(product = new Product("Chivas Regal", 40, Category.Drinkable, 10));
+            products.Add(product = new Product("Chivas", 40, Category.Drinkable, 10));
+            products.Add(product = new Product("Sierra Tequilla", 40, Category.Drinkable, 10));
+            products.Add(product = new Product("Sierra Tequilla", 40, Category.Drinkable, 10));
+            products.Add(product = new Product("Camel", 8.50, Category.Cigarettes, 30));
+            products.Add(product = new Product("Marlboro", 11, Category.Cigarettes, 30));
+            products.Add(product = new Product("Parliament", 11, Category.Cigarettes, 30));
+            products.Add(product = new Product("Winston", 2.50, Category.Cigarettes, 30));
+            products.Add(product = new Product("American Spirit", 10, Category.Cigarettes, 30));
+            products.Add(product = new Product("Toilet Paper", 1.50, Category.Others, 30));
+            products.Add(product = new Product("Soap", 0.60, Category.Others, 30));
+            products.Add(product = new Product("Tooth Paste", 1.90, Category.Others, 30));
+            products.Add(product = new Product("Mug", 14, Category.Others, 30));
+            products.Add(product = new Product("Mask", 0.10, Category.Others, 30));
+        }
         public void AddProducts(Product product)
         {
             products.Add(product);
+        }
+        public void DeleteProduct(Product product)
+        {
+            products.Remove(product);
         }
         public void EditProducts(string newName, int newCount, double price, Category category, Category newCategory, int id)
         {
@@ -54,24 +85,24 @@ namespace MarketApp.Services
             }
             return products;
         }
-        public void GetProductForGivenCategory(Category category, string id, string name, int count, double price)
+        public void GetProductForGivenCategory(Product product)
         {
-            throw new NotImplementedException();
+
         }
         public void GetProductForGivenName(string id, string name, Category category, int count, double price)
         {
-            throw new NotImplementedException();
+
         }
         public void GetProductForGivenPrice(double lowPrice, double highPrice, string id, string name, Category category, int count, double price)
         {
-            throw new NotImplementedException();
+
         }
+        #endregion
+        #region Sales
         public void ReturnProduct(string itemName, int count)
         {
             throw new NotImplementedException();
         }
-        #endregion
-        #region Sales
         public void GetAllSales(string no, double amount, int count, DateTime date)
         {
             throw new NotImplementedException();
