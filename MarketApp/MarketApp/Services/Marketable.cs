@@ -11,32 +11,32 @@ namespace MarketApp.Services
     {
         public List<Product> products = new List<Product>();
         #region Products
-        public void ItemList(Product product)
+        public void ItemList()
         {
-            products.Add(product = new Product("Lay's", 1.5, Category.Food, 20));
-            products.Add(product = new Product("Snickers", 0.60, Category.Food, 20));
-            products.Add(product = new Product("Toblerone", 2.60, Category.Food, 20));
-            products.Add(product = new Product("Sausage", 3.25, Category.Food, 20));
-            products.Add(product = new Product("Meat", 6.10, Category.Food, 20));
-            products.Add(product = new Product("Haribo", 1.25, Category.Food, 20));
-            products.Add(product = new Product("Coca-Cola", 1, Category.Drinkable, 20));
-            products.Add(product = new Product("Tea", 2.30, Category.Drinkable, 20));
-            products.Add(product = new Product("Jack Daniel's", 30, Category.Drinkable, 10));
-            products.Add(product = new Product("Absolute", 35, Category.Drinkable, 10));
-            products.Add(product = new Product("Chivas Regal", 40, Category.Drinkable, 10));
-            products.Add(product = new Product("Chivas", 40, Category.Drinkable, 10));
-            products.Add(product = new Product("Sierra Tequilla", 40, Category.Drinkable, 10));
-            products.Add(product = new Product("Sierra Tequilla", 40, Category.Drinkable, 10));
-            products.Add(product = new Product("Camel", 8.50, Category.Cigarettes, 30));
-            products.Add(product = new Product("Marlboro", 11, Category.Cigarettes, 30));
-            products.Add(product = new Product("Parliament", 11, Category.Cigarettes, 30));
-            products.Add(product = new Product("Winston", 2.50, Category.Cigarettes, 30));
-            products.Add(product = new Product("American Spirit", 10, Category.Cigarettes, 30));
-            products.Add(product = new Product("Toilet Paper", 1.50, Category.Others, 30));
-            products.Add(product = new Product("Soap", 0.60, Category.Others, 30));
-            products.Add(product = new Product("Tooth Paste", 1.90, Category.Others, 30));
-            products.Add(product = new Product("Mug", 14, Category.Others, 30));
-            products.Add(product = new Product("Mask", 0.10, Category.Others, 30));
+            products.Add(new Product("Lay's", 1.5, Category.Food, 20));
+            products.Add(new Product("Snickers", 0.60, Category.Food, 20));
+            products.Add(new Product("Toblerone", 2.60, Category.Food, 20));
+            products.Add(new Product("Sausage", 3.25, Category.Food, 20));
+            products.Add(new Product("Meat", 6.10, Category.Food, 20));
+            products.Add(new Product("Haribo", 1.25, Category.Food, 20));
+            products.Add(new Product("Coca-Cola", 1, Category.Drinkable, 20));
+            products.Add(new Product("Tea", 2.30, Category.Drinkable, 20));
+            products.Add(new Product("Jack Daniel's", 30, Category.Drinkable, 10));
+            products.Add(new Product("Absolute", 35, Category.Drinkable, 10));
+            products.Add(new Product("Chivas Regal", 40, Category.Drinkable, 10));
+            products.Add(new Product("Chivas", 40, Category.Drinkable, 10));
+            products.Add(new Product("Sierra Tequilla", 40, Category.Drinkable, 10));
+            products.Add(new Product("Sierra Tequilla", 40, Category.Drinkable, 10));
+            products.Add(new Product("Camel", 8.50, Category.Cigarettes, 30));
+            products.Add(new Product("Marlboro", 11, Category.Cigarettes, 30));
+            products.Add(new Product("Parliament", 11, Category.Cigarettes, 30));
+            products.Add(new Product("Winston", 2.50, Category.Cigarettes, 30));
+            products.Add(new Product("American Spirit", 10, Category.Cigarettes, 30));
+            products.Add(new Product("Toilet Paper", 1.50, Category.Others, 30));
+            products.Add(new Product("Soap", 0.60, Category.Others, 30));
+            products.Add(new Product("Tooth Paste", 1.90, Category.Others, 30));
+            products.Add(new Product("Mug", 14, Category.Others, 30));
+            products.Add(new Product("Mask", 0.10, Category.Others, 30));
         }
         public void AddProducts(Product product)
         {

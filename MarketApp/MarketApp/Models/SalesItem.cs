@@ -6,9 +6,9 @@ namespace MarketApp.Models
 {
     class SalesItem
     {
-        int No;
-        Product Product;
-        int Count;
+        public int No;
+        public Product Product;
+        public int Count;
 
         public SalesItem(int no, Product product, int count)
         {
