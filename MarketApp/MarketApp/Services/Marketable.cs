@@ -100,9 +100,85 @@ namespace MarketApp.Services
         }
         #endregion
         #region Sales
-        public void ReturnProduct(string itemName, int count)
+        public void ReturnProduct(Sales sales, Product product)
         {
-            throw new NotImplementedException();
+            double cashBack = 0;
+            Console.Clear();
+            int no;
+            Console.Write("Enter Sales Number That You Want Return Product: ");
+        TryAgain:
+            bool isNumber = int.TryParse(Console.ReadLine(), out no);
+            if (!isNumber)
+            {
+                Console.Write(
+                    "\n" +
+                    "Wrong Choise. Try Again: ");
+                goto TryAgain;
+            }
+            if (no <= 0)
+            {
+                Console.Write(
+                    "\n" +
+                    "Wrong Choise. Try Again: ");
+                goto TryAgain;
+            }
+            Console.Write("---------------------------------\nEnter Product Count that You Want Return: ");
+            int count;
+        TryAgain2:
+            bool isNumber1 = int.TryParse(Console.ReadLine(), out count);
+            if (!isNumber1)
+            {
+                Console.Write(
+                    "\n" +
+                    "Wrong Choise. Try Again: ");
+                goto TryAgain2;
+            }
+            if (count <= 0)
+            {
+                Console.Write(
+                    "\n" +
+                    "Wrong Choise. Try Again: ");
+                goto TryAgain2;
+            }
+            //SalesItem salesItem;
+            foreach (var item in basket)
+            {
+                Console.WriteLine("\n--------Item Detected--------\n");
+                Console.WriteLine("++++++++++++++++++++++++++++++++++++++" +
+                $"\nItem Name: {item.ItemName}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nPrice: {item.Price + "$"}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nCategory: {item.Category}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nItem Left: {item.CountItem -= count}" +
+                "\n++++++++++++++++++++++++++++++++++++++" +
+                $"\nID: {item.ID}\n\n");
+                break;
+            }
+            Console.WriteLine("Press Any Key For Return Product");
+            Console.ReadLine();
+
+            for (int i = 0; i < count; i++)
+            {
+                basket.Remove(product);
+            }
+            if (product.CountItem == count)
+            {
+                products.Add(product);
+            }
+            else
+            {
+                product.CountItem += count;
+            }
+            foreach (Product item in basket)
+            {
+                cashBack += product.Price;
+            }
+            Console.WriteLine("=================================================");
+            Console.WriteLine("Item Succesfully Return");
+            Console.WriteLine($"Your Final Cash Back is: {cashBack} $");
+            Console.WriteLine(product.date);
         }
         public void GetAllSales(string no, double amount, int count, DateTime date)
         {

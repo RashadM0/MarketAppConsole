@@ -280,7 +280,11 @@ namespace MarketApp
                         Console.Clear();
                         goto MainChoise;
                     case "2":
-                    //return
+                        ReturnProductFromSale(marketable);
+                        Console.WriteLine("Press Any Key for Continue");
+                        Console.ReadLine();
+                        Console.Clear();
+                        goto MainChoise;
                     case "3":
                     //delete
                     case "4":
@@ -740,11 +744,16 @@ namespace MarketApp
             {
                 amount += product.Price;
             }
-            Console.Write("Enter Date: ");
-            DateTime dateTime = Convert.ToDateTime(Console.ReadLine());
+            SalesItem salesItem = new SalesItem(product, countItem);
             Console.WriteLine("=================================================");
+            Console.WriteLine($"Sales Number {salesItem.No}");
             Console.WriteLine("Item Succesfully Added to Cart");
             Console.WriteLine($"Your Final Pay Is: {amount} $");
+            Console.WriteLine(product.date);
+        }
+        static void ReturnProductFromSale(Marketable marketable)
+        {
+            //marketable.ReturnProduct();
         }
         #endregion
     }

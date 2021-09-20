@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{AF9FE6F7-9A0E-4518-A387-52AB36164575}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MarketApp/Program.cs">
+    <Files>
+      <File FileName="MarketApp/Program.cs" Line="667" Column="19" />
+      <File FileName="MarketApp/Models/Product.cs" Line="16" Column="19" />
+      <File FileName="MarketApp/Models/Sales.cs" Line="1" Column="1" />
+      <File FileName="MarketApp/Models/SalesItem.cs" Line="21" Column="5" />
+      <File FileName="MarketApp/Services/Marketable.cs" Line="142" Column="9" />
+      <File FileName="MarketApp/Interfaces/IMarketable.cs" Line="22" Column="56" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MarketApp" expanded="True">
+            <Node name="MarketApp" expanded="True">
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.MarketApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

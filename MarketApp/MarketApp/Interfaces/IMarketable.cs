@@ -19,7 +19,7 @@ namespace MarketApp.Interfaces
         #region Sales
         void Sales(string no, double amount, SalesItem salesItem, DateTime date);
         void ItemSales(string id, int count);
-        void ReturnProduct(string itemName, int count);
+        void ReturnProduct(Sales sales, Product product);
         void GetAllSales(string no, double amount, int count, DateTime date);
         void GetSalesForGivenDates(string no, double amount, int count, DateTime date, DateTime date1);
         void GetSalesForGivenDates(DateTime oldDate, DateTime newdate, DateTime date, string no, double amount, int count);

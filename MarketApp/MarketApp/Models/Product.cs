@@ -15,6 +15,7 @@ namespace MarketApp.Models
         public Category Category;
         public int CountItem;
         public int ID { get; set; }
+        public DateTime date;
         public Product(string itemName, double price, Category category, int countItem)
         {
             ItemName = itemName;
@@ -22,6 +23,7 @@ namespace MarketApp.Models
             Category = category;
             CountItem = countItem;
             ID = ++_id;
+            date = DateTime.Now;
         }
         Marketable marketable = new Marketable();
         public override string ToString()

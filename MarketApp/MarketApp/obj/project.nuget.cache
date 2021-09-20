@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "MvomW/0gQMpLWJ4p3Sw1wPuRY7zrZ+Vnur3pJlXxt1+/WOPF9r3s839k46gsVljQFUwOn0M93WtM6nEoIqRqsw==",
+  "dgSpecHash": "hqsDx0msKRKQcP+F2x18XnX3JV96Jayjcq6+hEAAwu8T9iQlmdFo7OEaa4MDHZ12SXLUqL2d52osW62QI85/ZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rashadkhm\\Desktop\\MarketAppConsole\\MarketApp\\MarketApp\\MarketApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/mjollnnirr/MarketAppConsole/MarketApp/MarketApp/MarketApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/mjollnnirr/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.17/microsoft.netcore.app.host.osx-x64.3.1.17.nupkg.sha512"
+  ],
   "logs": []
 }

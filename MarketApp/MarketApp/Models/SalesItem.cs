@@ -6,15 +6,17 @@ namespace MarketApp.Models
 {
     class SalesItem
     {
+        private static int _no = 0;
         public int No;
         public Product Product;
-        public int Count;
+        public int Count { get; set; }
 
-        public SalesItem(int no, Product product, int count)
+        public SalesItem(Product product, int count)
         {
-            No = no;
             Product = product;
             Count = count;
+            No = ++_no;
         }
     }
-}
+    }
+
