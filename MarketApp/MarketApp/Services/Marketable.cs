@@ -10,6 +10,7 @@ namespace MarketApp.Services
     class Marketable : IMarketable
     {
         public List<Product> products = new List<Product>();
+        public List<Product> basket = new List<Product>();
         #region Products
         public void ItemList()
         {

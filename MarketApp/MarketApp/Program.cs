@@ -665,7 +665,6 @@ namespace MarketApp
         static void AddSale(Marketable marketable)
         {
             double amount = 0;
-            List<Product> basket = new List<Product>();
             SelectCategory(marketable);
             //FoundItemById(marketable);
             int id;
@@ -727,7 +726,7 @@ namespace MarketApp
             }
             for (int i = 0; i < countItem; i++)
             {
-                basket.Add(product);
+               marketable.basket.Add(product);
             }
             if (product.CountItem == countItem)
             {
@@ -737,14 +736,15 @@ namespace MarketApp
             {
                 product.CountItem -= countItem;
             }
-            foreach (Product item2 in basket)
+            foreach (Product item2 in marketable.basket)
             {
                 amount += product.Price;
             }
+            Console.Write("Enter Date: ");
+            DateTime dateTime = Convert.ToDateTime(Console.ReadLine());
             Console.WriteLine("=================================================");
             Console.WriteLine("Item Succesfully Added to Cart");
             Console.WriteLine($"Your Final Pay Is: {amount} $");
-            Console.WriteLine(DateTime.Now);
         }
         #endregion
     }
